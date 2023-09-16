@@ -27,7 +27,7 @@ void setup()
 	pinMode(PIN_D, OUTPUT);
 	pinMode(PIN_SWITCH, INPUT);
 	
-	const int totalDelay = 43;	// previous calibration: 48
+	const int totalDelay = 1158;
 	
 	for (int i = 0; i < numSteps; ++i)
 		delays[i] = totalDelay / numSteps + (i < totalDelay % numSteps ? 1 : 0);
