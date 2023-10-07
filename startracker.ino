@@ -27,7 +27,7 @@ void setup()
 	pinMode(PIN_D, OUTPUT);
 	pinMode(PIN_SWITCH, INPUT);
 	
-	const int totalDelay = 1158;
+	const int totalDelay = 1160;
 	
 	for (int i = 0; i < numSteps; ++i)
 		delays[i] = totalDelay / numSteps + (i < totalDelay % numSteps ? 1 : 0);
@@ -41,11 +41,18 @@ void write(int b)
 	digitalWrite(PIN_D, bitRead(b, 3));
 }
 
-void step()
+void step(bool reverse)
 {
+	int index;
+	
 	for (int i = 0; i < numSteps; ++i)
 	{
-		write(steps[i]);
+		if (reverse)
+			index = numSteps - 1 - i;
+		else
+			index = i;
+		
+		write(steps[index]);
 		delay(delays[i]);
 	}
 }
@@ -55,5 +62,5 @@ void loop()
 	isEnabled = digitalRead(PIN_SWITCH);
 	
 	if (isEnabled)
-		step();
+		step(false);
 }
