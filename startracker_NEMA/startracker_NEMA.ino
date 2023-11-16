@@ -11,8 +11,7 @@ void setup()
 	pinMode(STEP_PIN, OUTPUT);
 	digitalWrite(DIR_PIN, LOW);	// HIGH or LOW to change direction
 	
-	
-	for (int i = 0; i < numSteps; ++i)
+	for (int i = 0; i < numSteps; ++i)	// distributes totalDelay over numSteps number of steps as evenly as possible
 		delays[i] = totalDelay / numSteps + (i < totalDelay % numSteps ? 1 : 0);
 }
 
